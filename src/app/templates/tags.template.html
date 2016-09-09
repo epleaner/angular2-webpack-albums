@@ -1,0 +1,9 @@
+<h3>My Tags</h3>
+<ul>
+  <li *ngFor="let tag of tags">
+    <span>{{tag}}</span>
+    <button (click)="delete(tag)">-</button>
+  </li>
+  <input #newTag type="text">
+  <button (click)="add(newTag.value); newTag.value=''">+</button>
+</ul>

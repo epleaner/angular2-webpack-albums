@@ -8,20 +8,18 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
 /*
  * Platform and Environment providers/directives/pipes
  */
-import { ENV_PROVIDERS } from './environment';
-import { ROUTES } from './app.routes';
+import { ENV_PROVIDERS } from '../environment';
+import { ROUTES } from '../app.routes';
 // App is our top level component
-import { App } from './app.component';
-import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { AppState, InteralStateType } from './app.service';
-import { Home } from './home';
-import { About } from './about';
-import { NoContent } from './no-content';
-import { XLarge } from './home/x-large';
+import { App } from '../components/app.component';
+import { AppState, InteralStateType } from '../services/app.service';
+import TagsComponent from "../components/tags.component";
+import AlbumsComponent from "../components/albums.component";
+import TagsService from "../services/tags.service";
+import AlbumsService from "../services/albums.service";
 
 // Application wide providers
 const APP_PROVIDERS = [
-  ...APP_RESOLVER_PROVIDERS,
   AppState
 ];
 
@@ -38,10 +36,8 @@ type StoreType = {
   bootstrap: [ App ],
   declarations: [
     App,
-    About,
-    Home,
-    NoContent,
-    XLarge
+    TagsComponent,
+    AlbumsComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -51,7 +47,9 @@ type StoreType = {
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    TagsService,
+    AlbumsService
   ]
 })
 export class AppModule {
